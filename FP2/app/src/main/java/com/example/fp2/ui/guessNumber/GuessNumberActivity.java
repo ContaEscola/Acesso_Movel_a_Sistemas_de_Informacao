@@ -49,7 +49,7 @@ public class GuessNumberActivity extends AppCompatActivity {
 
 
         if(guessNumber.isEmpty()) {
-            Toast.makeText(this,"Escreva um número!", Toast.LENGTH_LONG);
+            Toast.makeText(this,"Escreva um número!", Toast.LENGTH_LONG).show();
             return;
         }
 
