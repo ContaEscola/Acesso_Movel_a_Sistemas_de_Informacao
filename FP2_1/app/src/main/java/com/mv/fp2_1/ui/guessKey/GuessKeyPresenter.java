@@ -2,6 +2,8 @@ package com.mv.fp2_1.ui.guessKey;
 
 import com.mv.fp2_1.data.models.GuessKey;
 
+import java.util.Map;
+
 public class GuessKeyPresenter implements GuessKeyMvpPresenter {
 
     private final GuessKeyMvpView mView;
@@ -14,8 +16,12 @@ public class GuessKeyPresenter implements GuessKeyMvpPresenter {
 
     @Override
     public void onGuess(int[] numbers, int[] stars) {
+        mModel.generateKey();
+        String key = mModel.getKey();
+        String result = mModel.guess(numbers, stars);
 
-
+        mView.displayKey(key);
+        mView.displayResult(result);
 
     }
 

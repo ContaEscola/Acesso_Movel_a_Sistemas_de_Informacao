@@ -10,12 +10,12 @@ public class GuessKeyView implements GuessKeyMvpView {
 
     @Override
     public void displayKey(String key) {
-
+        mActivity.getTvKey().setText(key);
     }
 
     @Override
     public void displayResult(String result) {
-
+        mActivity.getTvResult().setText(result);
     }
 
     @Override

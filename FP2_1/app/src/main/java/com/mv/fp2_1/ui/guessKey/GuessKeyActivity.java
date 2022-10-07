@@ -3,6 +3,7 @@ package com.mv.fp2_1.ui.guessKey;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,51 +11,62 @@ import android.widget.Toast;
 
 import com.mv.fp2_1.R;
 import com.mv.fp2_1.data.models.GuessKey;
+import com.mv.fp2_1.data.models.GuessKeyBuilder;
 import com.mv.fp2_1.utils.InputUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GuessKeyActivity extends AppCompatActivity {
 
     private final GuessKeyMvpPresenter mPresenter;
-    private final Map<String, TextView> textViews;
+    private TextView tvKey;
+    private TextView tvResult;
 
-    private final Map<String, EditText> editTextsNumbers;
-    private final Map<String, EditText> editTextsStars;
+    private EditText etFirstNum;
+    private EditText etSecondNum;
+    private EditText etThirdNum;
+    private EditText etFourthNum;
+    private EditText etFifthNum;
+
+    private EditText etFirstStar;
+    private EditText etSecondStar;
+
     private Button btnGenerateKey;
+
+    public TextView getTvKey() {
+        return tvKey;
+    }
+
+    public TextView getTvResult() {
+        return tvResult;
+    }
 
     public GuessKeyActivity() {
         mPresenter = new GuessKeyPresenter(
                 new GuessKeyView(this),
-                new GuessKey()
+                new GuessKeyBuilder().build()
         );
-
-        textViews = new HashMap<>();
-        editTextsNumbers = new HashMap<>();
-        editTextsStars = new HashMap<>();
     }
+
+
 
     private void setTextViews(){
-        textViews.put("tvKey", (TextView) findViewById(R.id.tvKey));
-        textViews.put("tvResult", (TextView) findViewById(R.id.tvResult));
+        tvKey =  findViewById(R.id.tvKey);
+        tvResult = findViewById(R.id.tvResult);
     }
 
-    public TextView getTextView(String key) {
-        return textViews.get(key);
-    }
+
 
     private void setEditTexts(){
-        editTextsNumbers.put("etFirstNum", (EditText) findViewById(R.id.etFirstNum));
-        editTextsNumbers.put("etSecondNum", (EditText) findViewById(R.id.etSecondNum));
-        editTextsNumbers.put("etThirdNum", (EditText) findViewById(R.id.etThirdNum));
-        editTextsNumbers.put("etFourthNum", (EditText) findViewById(R.id.etFourthNum));
-        editTextsNumbers.put("etFifthNum", (EditText) findViewById(R.id.etFifthNum));
+        etFirstNum = findViewById(R.id.etFirstNum);
+        etSecondNum = findViewById(R.id.etSecondNum);
+        etThirdNum = findViewById(R.id.etThirdNum);
+        etFourthNum = findViewById(R.id.etFourthNum);
+        etFifthNum = findViewById(R.id.etFifthNum);
 
-        editTextsStars.put("etFirstStar", (EditText) findViewById(R.id.etFirstStar));
-        editTextsStars.put("etSecondStar", (EditText) findViewById(R.id.etSecondStar));
+        etFirstStar =  findViewById(R.id.etFirstStar);
+        etSecondStar =  findViewById(R.id.etSecondStar);
     }
 
     @Override
@@ -69,35 +81,56 @@ public class GuessKeyActivity extends AppCompatActivity {
 
         btnGenerateKey.setOnClickListener(view -> {
 
-            EditText[] etNumbersArray = editTextsNumbers.values().toArray(new EditText[0]);
-            EditText[] etStarsArray = editTextsStars.values().toArray(new EditText[0]);
+            EditText[] etNumbersArray = new EditText[] {
+                    etFirstNum,
+                    etSecondNum,
+                    etThirdNum,
+                    etFourthNum,
+                    etFifthNum
+            };
+
+            EditText[] etStarsArray = new EditText[] {
+                    etFirstStar,
+                    etSecondStar
+            };
 
             EditText emptyInputNumber = InputUtils.EditTexts.isEmpty(etNumbersArray);
 
             if(emptyInputNumber != null) {
                 emptyInputNumber.requestFocus();
-                Toast.makeText(getApplicationContext(), "Digite todos os números!", Toast.LENGTH_LONG);
+                Log.d("EmptyInput", getResources().getResourceEntryName(emptyInputNumber.getId()));
+                Toast.makeText(getApplicationContext(), "Digite todos os números!", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             EditText emptyInputStar = InputUtils.EditTexts.isEmpty(etStarsArray);
 
             if(emptyInputStar != null) {
                 emptyInputStar.requestFocus();
-                Toast.makeText(getApplicationContext(), "Digite todas as estrelas!", Toast.LENGTH_LONG);
+                Log.d("EmptyInput", getResources().getResourceEntryName(emptyInputStar.getId()));
+                Toast.makeText(getApplicationContext(), "Digite todas as estrelas!", Toast.LENGTH_SHORT).show();
+                return;
             }
 
-            List<Integer> numbers = new ArrayList<Integer>();
-            for(EditText editText : etNumbersArray) {
-                numbers[] = Integer.parseInt(editText.getText().toString());
+            int[] numbers = new int[etNumbersArray.length];
+            int[] stars = new int[etStarsArray.length];
+
+            for(int i = 0; i < etNumbersArray.length; i++) {
+                numbers[i] = Integer.parseInt(etNumbersArray[i].getText().toString());
             }
-            int[] stars;
 
+            for(int i = 0; i < etStarsArray.length; i++) {
+                stars[i] = Integer.parseInt(etStarsArray[i].getText().toString());
+            }
 
-           //mPresenter.onGuess();
+            mPresenter.onGuess(numbers, stars);
+
         });
     }
 
-
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.terminate();
+    }
 }
