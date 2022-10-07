@@ -10,11 +10,13 @@ public class GuessKeyView implements GuessKeyMvpView {
 
     @Override
     public void displayKey(String key) {
+        if (mActivity == null) return;
         mActivity.getTvKey().setText(key);
     }
 
     @Override
     public void displayResult(String result) {
+        if (mActivity == null) return;
         mActivity.getTvResult().setText(result);
     }
 
