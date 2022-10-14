@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FP3</string>
+    <string name="hint_email">Introduza o email:</string>
+    <string name="hint_password">Introduza a password:</string>
+    <string name="txt_login">Login</string>
+    <string name="txt_welcome">Bem-vindo!</string>
+</resources>
