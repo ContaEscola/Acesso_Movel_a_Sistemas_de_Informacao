@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/HomeAct_Tv_Welcome" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/HomeAct_Btn_GoToStaticBook"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/HomeAct_Tv_EmailPlaceholder" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/HomeAct_Btn_GoToDynamicBook"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
@@ -57,9 +57,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/HomeAct_Btn_GoToStaticBook" />
 
     <Button
+        android:id="@+id/HomeAct_Btn_SendEmail"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
@@ -70,6 +71,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/HomeAct_Btn_GoToDynamicBook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

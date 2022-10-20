@@ -14,9 +14,28 @@
         android:theme="@style/Theme.FP3"
         tools:targetApi="31">
         <activity
+            android:name=".ui.dynamic_data.DynamicDataActivity"
+            android:exported="false"
+            android:label="Dados Dinâmicos"
+            android:parentActivityName=".ui.home.HomeActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.static_data.StaticBookActivity"
+            android:exported="false"
+            android:label="Dados Estáticos"
+            android:parentActivityName=".ui.home.HomeActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false"
-            android:label="Books"/>
+            android:label="Books"
+            android:launchMode="singleTop" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
