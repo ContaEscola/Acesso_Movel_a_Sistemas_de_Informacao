@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.static_data.StaticBookFragment">
+
+    <ImageView
+        android:id="@+id/StaticDataFrag_Iv_BookCoverPlaceholder"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_book_cover_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_TitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Título:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Iv_BookCoverPlaceholder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_TitlePlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Programar em Android AMSI"
+        app:layout_constraintBaseline_toBaselineOf="@+id/StaticDataFrag_Tv_TitleLabel"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Tv_TitleLabel" />
+
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_SerieLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Série:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Iv_BookCoverPlaceholder"
+        app:layout_constraintTop_toBottomOf="@+id/StaticDataFrag_Tv_TitleLabel" />
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_SeriePlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Android Saga"
+        app:layout_constraintBaseline_toBaselineOf="@+id/StaticDataFrag_Tv_SerieLabel"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Tv_SerieLabel" />
+
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_AutorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Autor:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Iv_BookCoverPlaceholder"
+        app:layout_constraintTop_toBottomOf="@+id/StaticDataFrag_Tv_SerieLabel" />
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_AutorPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Equipa AMSI"
+        app:layout_constraintBaseline_toBaselineOf="@+id/StaticDataFrag_Tv_AutorLabel"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Tv_AutorLabel" />
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_AnoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Ano:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Iv_BookCoverPlaceholder"
+        app:layout_constraintTop_toBottomOf="@+id/StaticDataFrag_Tv_AutorLabel" />
+
+    <TextView
+        android:id="@+id/StaticDataFrag_Tv_AnoPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="2019"
+        app:layout_constraintBaseline_toBaselineOf="@+id/StaticDataFrag_Tv_AnoLabel"
+        app:layout_constraintStart_toEndOf="@+id/StaticDataFrag_Tv_AnoLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
