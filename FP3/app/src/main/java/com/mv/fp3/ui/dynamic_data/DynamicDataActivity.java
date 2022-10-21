@@ -36,7 +36,7 @@ public class DynamicDataActivity extends AppCompatActivity {
         titlePlaceholder.setText(dynamicBook.getTitle());
         seriePlaceholder.setText(dynamicBook.getSerie());
         authorPlaceholder.setText(dynamicBook.getAuthor());
-        yearPlaceholder.setText(dynamicBook.getYear());
+        yearPlaceholder.setText(String.valueOf(dynamicBook.getYear()));
         coverPlaceholder.setImageResource(dynamicBook.getCover());
     }
 
