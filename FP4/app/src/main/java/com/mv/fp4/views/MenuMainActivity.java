@@ -56,9 +56,11 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         tvMail.setText(email);
     }
 
-    private void carregarFragmentoInicial(){
-        Fragment fragment = new EstaticoFragment();
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
+    private boolean carregarFragmentoInicial(){
+        Menu menu = navView.getMenu();
+        MenuItem defaultItem = menu.getItem(0);
+        defaultItem.setChecked(true);
+        return onNavigationItemSelected(defaultItem);
     }
 
     @Override
