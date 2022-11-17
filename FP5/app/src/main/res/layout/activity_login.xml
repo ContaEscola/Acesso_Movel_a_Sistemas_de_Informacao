@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/LoginAct_Imv_LogoPl"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="148dp"
+        android:contentDescription="Logo Politécnico de Leiria"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_politecnico_leiria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/LoginAct_Et_Email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColorHint="#78909C"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/LoginAct_Imv_LogoPl" />
+
+    <EditText
+        android:id="@+id/LoginAct_Et_Password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#78909C"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/LoginAct_Et_Email" />
+
+    <Button
+        android:id="@+id/LoginAct_Btn_Login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_login"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/LoginAct_Et_Password" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="39dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="41dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
