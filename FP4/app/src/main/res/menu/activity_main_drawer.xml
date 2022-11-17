@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    >
+
     <group
-        android:checkableBehavior="single"
-        >
+        android:checkableBehavior="single">
         <item
             android:id="@+id/navEstatico"
             android:title="Livro Estático"
-            android:icon="@drawable/ic_menu_estatico"
+            android:icon="@drawable/ic_nav_static_book"
+
             />
         <item
             android:id="@+id/navDinamico"
-            android:title="Livro Dinamico"
-            android:icon="@drawable/ic_menu_dinamico"
+            android:title="Livro Dinâmico"
+            android:icon="@drawable/ic_nav_dynamic_book"
             />
     </group>
 
-    <item android:title="Comunicar">
+    <item
+        android:title="Comunicar"
+        >
         <menu>
             <item
                 android:id="@+id/navMail"
                 android:title="Email"
-                android:icon="@drawable/ic_menu_mail"
+                android:icon="@drawable/ic_nav_email"
                 />
         </menu>
     </item>

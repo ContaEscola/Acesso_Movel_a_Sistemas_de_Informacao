@@ -1,4 +1,4 @@
-package com.mv.fp4.views;
+package com.mv.fp4.ui.static_data;
 
 import android.os.Bundle;
 
@@ -10,17 +10,19 @@ import android.view.ViewGroup;
 
 import com.mv.fp4.R;
 
-public class DinamicoFragment extends Fragment {
+public class EstaticoFragment extends Fragment {
 
-    public DinamicoFragment() {
+    public EstaticoFragment() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dinamico, container, false);
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_estatico, container, false);
         return view;
-
     }
 }

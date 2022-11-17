@@ -1,5 +1,6 @@
-package com.mv.fp4.views;
+package com.mv.fp4.ui;
 
+import androidx.annotation.GravityInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,54 +10,59 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-
 
 import com.google.android.material.navigation.NavigationView;
 import com.mv.fp4.R;
+import com.mv.fp4.data.model.User;
+import com.mv.fp4.ui.dynamic_data.DynamicFragment;
+import com.mv.fp4.ui.static_data.EstaticoFragment;
+
+import org.w3c.dom.Text;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     public static final String MAIL = "com.mv.fp4.MAIL";
-    private String email;
 
     private NavigationView navView;
     private DrawerLayout drawer;
-
-    private FragmentManager fragmentManager;
+    private FragmentManager fragManag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_main);
 
-        navView = findViewById(R.id.navView);
-        drawer = findViewById(R.id.drawerLayout);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
-        fragmentManager = getSupportFragmentManager();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nOpen, R.string.nClose);
-
-
         setSupportActionBar(toolbar);
-        toggle.syncState();
+        drawer = findViewById(R.id.drawerLayout);
+        navView = findViewById(R.id.navView);
+        fragManag = getSupportFragmentManager();
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.ndOpen, R.string.ndClose);
         drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         navView.setNavigationItemSelectedListener(this);
+
         carregarCabecalho();
         carregarFragmentoInicial();
+
     }
 
     private void carregarCabecalho() {
-        email = getIntent().getStringExtra(MAIL);
-        View hview = navView.getHeaderView(0);
-        TextView tvMail = hview.findViewById(R.id.tvHeaderMail);
-        tvMail.setText(email);
+        String email = getIntent().getStringExtra(MAIL);
+        TextView navHeaderEmail = navView.getHeaderView(0).findViewById(R.id.nav_email);
+        navHeaderEmail.setText(email);
     }
 
-    private boolean carregarFragmentoInicial(){
+
+    private boolean carregarFragmentoInicial() {
         Menu menu = navView.getMenu();
         MenuItem defaultItem = menu.getItem(0);
         defaultItem.setChecked(true);
@@ -67,23 +73,29 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
 
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case R.id.navEstatico:
                 fragment = new EstaticoFragment();
+                setTitle(item.getTitle());
                 break;
             case R.id.navDinamico:
-                fragment = new DinamicoFragment();
+                fragment = new DynamicFragment();
+                setTitle(item.getTitle());
                 break;
             case R.id.navMail:
+                Intent sendEmail = new Intent(Intent.ACTION_SENDTO);
+                sendEmail.setData(Uri.parse("mailto: testing@gmail.com"));
+                sendEmail.putExtra(Intent.EXTRA_SUBJECT, "PSI - AMSI 2022/2023");
+                startActivity(sendEmail);
                 break;
         }
 
-        if(fragment != null) {
-            setTitle(item.getTitle());
-            fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
-        }
+        if(fragment != null)
+            fragManag.beginTransaction().replace(R.id.contentFragment, fragment).commit();
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

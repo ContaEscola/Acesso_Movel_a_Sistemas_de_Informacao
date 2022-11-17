@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.static_data.EstaticoFragment">
+    tools:context=".ui.dynamic_data.DynamicFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,13 +13,12 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/DynamicDataAct_Iv_BookCoverPlaceholder"
+            android:id="@+id/DynamicDataFrag_Iv_BookCoverPlaceholder"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_book_cover_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,21 +31,20 @@
             android:text="Título:"
             android:textStyle="bold"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Iv_BookCoverPlaceholder"
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Iv_BookCoverPlaceholder"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_TitlePlaceholder"
+            android:id="@+id/DynamicDataFrag_Tv_TitlePlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Programar em Android AMSI"
             app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataAct_Tv_TitleLabel"
             app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Tv_TitleLabel" />
 
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_SerieLabel"
+            android:id="@+id/DynamicDataFrag_Tv_SerieLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -53,21 +52,20 @@
             android:text="Série:"
             android:textStyle="bold"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Iv_BookCoverPlaceholder"
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Iv_BookCoverPlaceholder"
             app:layout_constraintTop_toBottomOf="@+id/DynamicDataAct_Tv_TitleLabel" />
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_SeriePlaceholder"
+            android:id="@+id/DynamicDataFrag_Tv_SeriePlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Android Saga"
-            app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataAct_Tv_SerieLabel"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Tv_SerieLabel" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataFrag_Tv_SerieLabel"
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Tv_SerieLabel" />
 
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_AutorLabel"
+            android:id="@+id/DynamicDataFrag_Tv_AutorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -75,20 +73,19 @@
             android:text="Autor:"
             android:textStyle="bold"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Iv_BookCoverPlaceholder"
-            app:layout_constraintTop_toBottomOf="@+id/DynamicDataAct_Tv_SerieLabel" />
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Iv_BookCoverPlaceholder"
+            app:layout_constraintTop_toBottomOf="@+id/DynamicDataFrag_Tv_SerieLabel" />
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_AutorPlaceholder"
+            android:id="@+id/DynamicDataFrag_Tv_AutorPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Equipa AMSI"
-            app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataAct_Tv_AutorLabel"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Tv_AutorLabel" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataFrag_Tv_AutorLabel"
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Tv_AutorLabel" />
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_AnoLabel"
+            android:id="@+id/DynamicDataFrag_Tv_AnoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -96,17 +93,16 @@
             android:text="Ano:"
             android:textStyle="bold"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Iv_BookCoverPlaceholder"
-            app:layout_constraintTop_toBottomOf="@+id/DynamicDataAct_Tv_AutorLabel" />
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Iv_BookCoverPlaceholder"
+            app:layout_constraintTop_toBottomOf="@+id/DynamicDataFrag_Tv_AutorLabel" />
 
         <TextView
-            android:id="@+id/DynamicDataAct_Tv_AnoPlaceholder"
+            android:id="@+id/DynamicDataFrag_Tv_AnoPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="2019"
-            app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataAct_Tv_AnoLabel"
-            app:layout_constraintStart_toEndOf="@+id/DynamicDataAct_Tv_AnoLabel" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/DynamicDataFrag_Tv_AnoLabel"
+            app:layout_constraintStart_toEndOf="@+id/DynamicDataFrag_Tv_AnoLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
