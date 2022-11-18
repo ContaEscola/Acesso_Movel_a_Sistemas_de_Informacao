@@ -22,9 +22,6 @@ public class SingletonBookManager {
     }
 
     private void generateDynamicData() {
-        Book dynamicBook = new Book(1, "Programar em Android AMSI", "2º Temporada", "AMSI Team", 2019, R.drawable.img_book_cover_2);
-        bookList.add(dynamicBook);
-
         bookList.add(new Book(1,2021, R.drawable.img_book_cover_1, "Programar em Android AMSI - 1","2ª Temporada", "AMSI TEAM"));
         bookList.add(new Book(2,2021, R.drawable.img_book_cover_2, "Programar em Android AMSI - 2","2ª Temporada", "AMSI TEAM"));
         bookList.add(new Book(3,2021, R.drawable.ic_politecnico_leiria, "Programar em Android AMSI - 3","2ª Temporada", "AMSI TEAM"));

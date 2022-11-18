@@ -18,11 +18,10 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mv.fp5.R;
-import com.mv.fp5.ui.dynamic_data.DynamicFragment;
-import com.mv.fp5.ui.static_data.EstaticoFragment;
+import com.mv.fp5.ui.booksList.BooksListFragment;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String MAIL = "com.mv.fp4.MAIL";
+    public static final String MAIL = "com.mv.fp5.MAIL";
 
     private NavigationView navView;
     private DrawerLayout drawer;
@@ -70,12 +69,8 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         Fragment fragment = null;
 
         switch (item.getItemId()){
-            case R.id.navEstatico:
-                fragment = new EstaticoFragment();
-                setTitle(item.getTitle());
-                break;
-            case R.id.navDinamico:
-                fragment = new DynamicFragment();
+            case R.id.navBooksList:
+                fragment = new BooksListFragment();
                 setTitle(item.getTitle());
                 break;
             case R.id.navMail:

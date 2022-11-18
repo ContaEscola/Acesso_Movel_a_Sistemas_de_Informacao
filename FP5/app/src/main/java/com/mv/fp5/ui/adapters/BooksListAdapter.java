@@ -16,12 +16,44 @@ import java.util.ArrayList;
 
 public class BooksListAdapter extends BaseAdapter {
 
-    private static class ViewHolder {
-        TextView title;
-        TextView serie;
-        TextView author;
-        TextView year;
-        ImageView cover;
+    private class ViewHolder {
+        private TextView title;
+        private TextView serie;
+        private TextView author;
+        private TextView year;
+        private ImageView cover;
+        private Book book;
+
+        public ViewHolder(View view, Book book) {
+            this(view);
+            this.book = book;
+        }
+
+        public ViewHolder(View view) {
+            title = view.findViewById(R.id.BooksListItem_Tv_TitlePlaceholder);
+            serie = view.findViewById(R.id.BooksListItem_Tv_SeriePlaceholder);
+            author = view.findViewById(R.id.BooksListItem_Tv_AutorPlaceholder);
+            year = view.findViewById(R.id.BooksListItem_Tv_AnoPlaceholder);
+            cover = view.findViewById(R.id.BooksListItem_Iv_BookCoverPlaceholder);
+
+        }
+
+        public void updateBook() {
+            title.setText(book.getTitle());
+            serie.setText(book.getSerie());
+            author.setText(book.getAuthor());
+            year.setText(String.valueOf(book.getYear()));
+            cover.setImageResource(book.getCover());
+        }
+
+        public void updateBook(Book book) {
+            title.setText(book.getTitle());
+            serie.setText(book.getSerie());
+            author.setText(book.getAuthor());
+            year.setText(String.valueOf(book.getYear()));
+            cover.setImageResource(book.getCover());
+        }
+
 
     }
 
@@ -32,51 +64,45 @@ public class BooksListAdapter extends BaseAdapter {
     public BooksListAdapter(Context context, ArrayList<Book> booksList) {
         this.context = context;
         this.booksList = booksList;
-        this.layoutInflater = LayoutInflater.from(context);
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
     @Override
     public int getCount() {
-        return 0;
+        return booksList.size();
     }
 
     @Override
-    public Book getItem(int i) {
-        return SingletonBookManager.getInstance().getBook(i);
+    public Object getItem(int i) {
+        return booksList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return booksList.get(i).getId();
     }
+
+
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        Book book = getItem(i);
+        Book book = booksList.get(i);
 
         ViewHolder viewHolder;
         if(view == null) {
-            viewHolder = new ViewHolder();
-            view = layoutInflater.inflate(R.layout.books_list_item, parent, false);
+            //view = layoutInflater.inflate(R.layout.books_list_item, null);
+            view = layoutInflater.inflate(R.layout.books_list_item, viewGroup, false);
 
-            viewHolder.title = view.findViewById(R.id.BooksListItem_Tv_TitlePlaceholder);
-            viewHolder.serie = view.findViewById(R.id.BooksListItem_Tv_SeriePlaceholder);
-            viewHolder.author = view.findViewById(R.id.BooksListItem_Tv_AutorPlaceholder);
-            viewHolder.year = view.findViewById(R.id.BooksListItem_Tv_AnoPlaceholder);
-            viewHolder.cover = view.findViewById(R.id.BooksListItem_Iv_BookCoverPlaceholder);
-
+            viewHolder = new ViewHolder(view, book);
             view.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.title.setText(book.getTitle());
-        viewHolder.serie.setText(book.getSerie());
-        viewHolder.author.setText(book.getAuthor());
-        viewHolder.year.setText(book.getYear());
-        viewHolder.cover.setImageResource();
+        viewHolder.updateBook();
         return view;
 
 
