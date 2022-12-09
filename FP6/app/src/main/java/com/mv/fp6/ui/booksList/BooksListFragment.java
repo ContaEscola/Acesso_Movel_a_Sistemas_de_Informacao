@@ -1,5 +1,6 @@
 package com.mv.fp6.ui.booksList;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -44,7 +45,10 @@ public class BooksListFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Book selectedBook = (Book)adapterView.getItemAtPosition(i);
 
-                Toast.makeText(getContext(), String.valueOf(selectedBook.getId()), Toast.LENGTH_LONG).show();
+                Intent bookDetailsActivity = new Intent(getContext(), DetalhesLivroActivity.class);
+                bookDetailsActivity.putExtra(DetalhesLivroActivity.BOOK_ID,selectedBook.getId());
+                startActivity(bookDetailsActivity);
+
             }
         });
 

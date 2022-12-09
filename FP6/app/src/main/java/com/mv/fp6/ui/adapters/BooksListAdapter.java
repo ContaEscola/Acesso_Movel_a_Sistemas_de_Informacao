@@ -64,7 +64,7 @@ public class BooksListAdapter extends BaseAdapter {
     public BooksListAdapter(Context context, ArrayList<Book> booksList) {
         this.context = context;
         this.booksList = booksList;
-        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
 
@@ -90,19 +90,22 @@ public class BooksListAdapter extends BaseAdapter {
 
         Book book = booksList.get(i);
 
+        if(layoutInflater == null)
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         ViewHolder viewHolder;
-        if(view == null) {
+        if(view == null)
             //view = layoutInflater.inflate(R.layout.books_list_item, null);
             view = layoutInflater.inflate(R.layout.books_list_item, viewGroup, false);
 
-            viewHolder = new ViewHolder(view, book);
-            view.setTag(viewHolder);
+        viewHolder = (ViewHolder) view.getTag();
 
-        } else {
-            viewHolder = (ViewHolder) view.getTag();
+        if(viewHolder == null) {
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
         }
 
-        viewHolder.updateBook();
+        viewHolder.updateBook(book);
         return view;
 
 

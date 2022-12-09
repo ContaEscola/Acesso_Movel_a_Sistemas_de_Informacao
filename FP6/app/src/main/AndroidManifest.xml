@@ -14,6 +14,10 @@
         android:theme="@style/Theme.FP6"
         tools:targetApi="31">
         <activity
+            android:name=".ui.booksList.DetalhesLivroActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MenuMainActivity"/>
+        <activity
             android:name=".ui.MenuMainActivity"
             android:exported="false"
             android:launchMode="singleTop"
@@ -23,7 +27,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"

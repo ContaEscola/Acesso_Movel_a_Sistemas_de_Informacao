@@ -43,15 +43,14 @@ public class LoginActivity extends AppCompatActivity {
     private void init() {
         etEmail = findViewById(R.id.LoginAct_Et_Email);
         etPassword = findViewById(R.id.LoginAct_Et_Password);
-
         btnLogin = findViewById(R.id.LoginAct_Btn_Login);
+
+        etEmail.setText("pedronorberto368@gmail.com");
+        etPassword.setText("admin12345");
     }
 
     public void onLoginSuccess(){
-        //Intent homeActivity = new Intent(getApplicationContext(), HomeActivity.class);
-        //startActivity(homeActivity);
-
-        Intent menuMainActivity = new Intent(getApplicationContext(), MenuMainActivity.class);
+        Intent menuMainActivity = new Intent(this, MenuMainActivity.class);
         menuMainActivity.putExtra(MenuMainActivity.MAIL, "testing@gmail.com");
         startActivity(menuMainActivity);
     }

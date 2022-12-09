@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 import com.mv.fp6.R;
 import com.mv.fp6.ui.booksList.BooksListFragment;
+import com.mv.fp6.ui.booksList.GrelhaLivrosFragment;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String MAIL = "com.mv.fp5.MAIL";
@@ -71,6 +72,10 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         switch (item.getItemId()){
             case R.id.navBooksList:
                 fragment = new BooksListFragment();
+                setTitle(item.getTitle());
+                break;
+            case R.id.navBooksGrid:
+                fragment = new GrelhaLivrosFragment();
                 setTitle(item.getTitle());
                 break;
             case R.id.navMail:
