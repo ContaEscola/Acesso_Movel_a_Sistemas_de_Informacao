@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 import com.mv.fp6.R;
 import com.mv.fp6.ui.booksList.BooksListFragment;
+import com.mv.fp6.ui.booksList.DetalhesLivroActivity;
 import com.mv.fp6.ui.booksList.GrelhaLivrosFragment;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,5 +94,12 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         return true;
     }
 
+
+    // Para Recycler View
+    public void showBookDetails(int position) {
+        Intent bookDetailsActivity = new Intent(this, DetalhesLivroActivity.class);
+        bookDetailsActivity.putExtra(DetalhesLivroActivity.BOOK_POSITION,position);
+        startActivity(bookDetailsActivity);
+    }
 
 }

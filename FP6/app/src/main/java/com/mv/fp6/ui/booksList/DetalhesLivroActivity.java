@@ -11,7 +11,7 @@ import com.mv.fp6.databinding.ActivityDetalhesLivroBinding;
 
 public class DetalhesLivroActivity extends AppCompatActivity {
 
-    public static final String BOOK_ID = "book_id";
+    public static final String BOOK_POSITION = "book_position";
 
     private ActivityDetalhesLivroBinding binding;
     private Book book;
@@ -25,8 +25,8 @@ public class DetalhesLivroActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        int book_id = getIntent().getIntExtra(BOOK_ID, -1);
-        book = SingletonBookManager.getInstance().getBook(book_id);
+        int book_position = getIntent().getIntExtra(BOOK_POSITION, -1);
+        book = SingletonBookManager.getInstance().getBook(book_position);
 
         setTitle("Detalhes: " + book.getTitle());
 

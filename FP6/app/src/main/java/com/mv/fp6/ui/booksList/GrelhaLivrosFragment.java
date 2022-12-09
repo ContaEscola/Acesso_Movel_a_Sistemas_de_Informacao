@@ -1,5 +1,6 @@
 package com.mv.fp6.ui.booksList;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.mv.fp6.R;
@@ -32,6 +34,15 @@ public class GrelhaLivrosFragment extends Fragment {
 
         gridView = view.findViewById(R.id.BooksGridFrag_Gv);
         gridView.setAdapter(booksGridAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent bookDetailsActivity = new Intent(getContext(), DetalhesLivroActivity.class);
+                bookDetailsActivity.putExtra(DetalhesLivroActivity.BOOK_POSITION,i);
+                startActivity(bookDetailsActivity);
+            }
+        });
 
         return view;
 
