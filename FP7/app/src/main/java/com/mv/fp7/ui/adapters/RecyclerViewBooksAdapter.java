@@ -31,10 +31,22 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
     private ArrayList<Book> booksListOriginal;
     private ArrayList<Book> booksList;
 
+    private int getIndexOfBook(Book bookToLookUp) {
+        int currentIndex = 0;
+        for (Book item: booksList){
+            if(item.getId() == bookToLookUp.getId())
+                return currentIndex;
+            else
+                currentIndex++;
+        }
+
+        return -1;
+    }
+
     public RecyclerViewBooksAdapter(Context context, ArrayList<Book> booksList) {
         this.context = context;
         this.booksListOriginal = booksList;
-        this.booksList = booksList;
+        this.booksList = new ArrayList<>(booksList);
 
         SingletonBookManager.getInstance().bindAdapter(this);
     }
@@ -69,7 +81,7 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
             protected FilterResults performFiltering(CharSequence charSequence) {
                 ArrayList<Book> filteredList = null;
                 if(charSequence.length() == 0)
-                    filteredList = booksListOriginal;
+                    filteredList = new ArrayList<>(booksListOriginal);
                 else
                     filteredList = getFilteredList(charSequence.toString().toLowerCase());
 
@@ -97,6 +109,13 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
 
         return results;
     }
+
+    public void removeBook(Book bookRemoved) {
+        int indexOfBook = getIndexOfBook(bookRemoved);
+        booksList.remove(indexOfBook);
+        notifyItemRemoved(indexOfBook);
+    }
+
 
     public class BookItem extends RecyclerView.ViewHolder {
 

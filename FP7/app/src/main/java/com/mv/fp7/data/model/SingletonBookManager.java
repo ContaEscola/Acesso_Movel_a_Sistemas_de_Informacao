@@ -10,12 +10,11 @@ public class SingletonBookManager {
     private static SingletonBookManager instance = null;
     private ArrayList<Book> bookList;
 
-    private ArrayList<RecyclerViewBooksAdapter> adapters;
+    private RecyclerViewBooksAdapter adapter;
 
 
     private SingletonBookManager() {
         this.bookList = new ArrayList<>();
-        this.adapters = new ArrayList<>();
         generateDynamicData();
     }
 
@@ -27,7 +26,7 @@ public class SingletonBookManager {
     }
 
     public void bindAdapter(RecyclerViewBooksAdapter adapter) {
-        adapters.add(adapter);
+        this.adapter = (adapter);
     }
 
     private void generateDynamicData() {
@@ -63,7 +62,7 @@ public class SingletonBookManager {
     public void removeBook(int bookId) {
         Book book = getBook(bookId);
         bookList.remove(book);
-        notifyDataChangesForAdapters();
+        notifyRemoveOnAdapter(book);
     }
 
     public void editBook(Book updatedBook) {
@@ -71,8 +70,8 @@ public class SingletonBookManager {
         oldBook = updatedBook;
     }
 
-    private void notifyDataChangesForAdapters(){
-        for (RecyclerViewBooksAdapter adapter: adapters)
-            adapter.notifyDataSetChanged();
+    private void notifyRemoveOnAdapter(Book bookRemoved){
+        adapter.removeBook(bookRemoved);
     }
+
 }
