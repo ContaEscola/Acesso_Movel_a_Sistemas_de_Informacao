@@ -1,6 +1,7 @@
 package com.mv.fp7.data.model;
 
 import com.mv.fp7.R;
+import com.mv.fp7.ui.adapters.RecyclerViewAdapter;
 import com.mv.fp7.ui.adapters.RecyclerViewBooksAdapter;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class SingletonBookManager {
     private static SingletonBookManager instance = null;
     private ArrayList<Book> bookList;
 
-    private RecyclerViewBooksAdapter adapter;
+    private RecyclerViewAdapter adapter;
 
 
     private SingletonBookManager() {
@@ -25,7 +26,7 @@ public class SingletonBookManager {
         return instance;
     }
 
-    public void bindAdapter(RecyclerViewBooksAdapter adapter) {
+    public void bindAdapter(RecyclerViewAdapter adapter) {
         this.adapter = (adapter);
     }
 
@@ -55,8 +56,21 @@ public class SingletonBookManager {
         return null;
     }
 
+    public int getBookIndex(int id) {
+        int indexIncrementer = 0;
+        for (Book book: bookList){
+            if(book.getId() == id)
+                return indexIncrementer;
+
+            indexIncrementer++;
+        }
+
+        return -1;
+    }
+
     public void addBook(Book book) {
         bookList.add(book);
+        notifyAddOnAdapter(book);
     }
 
     public void removeBook(int bookId) {
@@ -66,12 +80,15 @@ public class SingletonBookManager {
     }
 
     public void editBook(Book updatedBook) {
-        Book oldBook = getBook(updatedBook.getId());
-        oldBook = updatedBook;
+        int updateIndex = getBookIndex(updatedBook.getId());
+        bookList.set(updateIndex, updatedBook);
+        notifyUpdateOnAdapter(updatedBook);
     }
 
     private void notifyRemoveOnAdapter(Book bookRemoved){
         adapter.removeBook(bookRemoved);
     }
+    private void notifyUpdateOnAdapter(Book bookUpdated) { adapter.notifyBookChanged(bookUpdated); }
+    private void notifyAddOnAdapter(Book bookAdded) { adapter.notifyBookInserted(bookAdded); }
 
 }

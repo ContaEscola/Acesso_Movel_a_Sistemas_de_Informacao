@@ -1,7 +1,10 @@
 package com.mv.fp7.ui.booksList;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -14,12 +17,15 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.mv.fp7.R;
 import com.mv.fp7.data.model.SingletonBookManager;
 import com.mv.fp7.ui.MenuMainActivity;
@@ -27,10 +33,13 @@ import com.mv.fp7.ui.adapters.RecyclerViewBooksAdapter;
 
 public class BooksListFragment extends Fragment {
 
+
     private ListView listView;
 
     private RecyclerView recyclerView;
     private RecyclerViewBooksAdapter adapter;
+
+    private SwipeRefreshLayout swipeContainer;
 
     public BooksListFragment() {
         // Required empty public constructor
@@ -44,6 +53,8 @@ public class BooksListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_books_list, container, false);
         setHasOptionsMenu(true);
+
+        swipeContainer = view.findViewById(R.id.BooksListFrag_SwipeContainer);
 
         // Para o customAdapter
         /*
@@ -73,7 +84,19 @@ public class BooksListFragment extends Fragment {
 
         FloatingActionButton floatAdd = view.findViewById(R.id.BooksListFrag_FloatBtn_Add);
         floatAdd.setOnClickListener(fragmentView -> {
+            addBook();
+        });
 
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                adapter = new RecyclerViewBooksAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
+                recyclerView.setAdapter(adapter);
+                swipeContainer.setRefreshing(false);
+
+
+            }
         });
 
         return view;
@@ -100,6 +123,24 @@ public class BooksListFragment extends Fragment {
         });
 
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == MenuMainActivity.REQUEST_DETAIL_ACTIVITY) {
+            if(resultCode == RESULT_OK) {
+                String resultMessage = data.getStringExtra(DetalhesLivroActivity.RESULT_MESSAGE);
+                Snackbar.make(getView(), resultMessage, Snackbar.LENGTH_SHORT).show();
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void addBook() {
+        Intent bookDetailsActivity = new Intent(getContext(), DetalhesLivroActivity.class);
+        bookDetailsActivity.putExtra(DetalhesLivroActivity.SCENARIO_KEY, DetalhesLivroActivity.SCENARIO_ADD);
+        startActivityForResult(bookDetailsActivity, MenuMainActivity.REQUEST_DETAIL_ACTIVITY);
     }
 
 }

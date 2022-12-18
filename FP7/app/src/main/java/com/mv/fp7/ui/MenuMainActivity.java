@@ -1,6 +1,7 @@
 package com.mv.fp7.ui;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.mv.fp7.R;
 import com.mv.fp7.data.prefs.PreferencesHelper;
 import com.mv.fp7.ui.booksList.BooksListFragment;
@@ -25,6 +27,7 @@ import com.mv.fp7.ui.booksList.GrelhaLivrosFragment;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String MAIL = "com.mv.fp5.MAIL";
+    public static final int REQUEST_DETAIL_ACTIVITY = 1;
 
     private NavigationView navView;
     private DrawerLayout drawer;
@@ -101,8 +104,20 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     // Para Recycler View
     public void showBookDetails(int bookId) {
         Intent bookDetailsActivity = new Intent(this, DetalhesLivroActivity.class);
+        bookDetailsActivity.putExtra(DetalhesLivroActivity.SCENARIO_KEY, DetalhesLivroActivity.SCENARIO_UPDATE);
         bookDetailsActivity.putExtra(DetalhesLivroActivity.BOOK_ID,bookId);
-        startActivity(bookDetailsActivity);
+        startActivityForResult(bookDetailsActivity, REQUEST_DETAIL_ACTIVITY);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == REQUEST_DETAIL_ACTIVITY) {
+            if(resultCode == RESULT_OK) {
+                String resultMessage = data.getStringExtra(DetalhesLivroActivity.RESULT_MESSAGE);
+                Snackbar.make(drawer, resultMessage, Snackbar.LENGTH_SHORT).show();
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

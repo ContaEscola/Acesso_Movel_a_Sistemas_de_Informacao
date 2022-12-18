@@ -65,13 +65,13 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/BooksDetailsAct_FloatBtn_Delete"
+        android:id="@+id/BooksDetailsAct_FloatBtn_Action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:src="@drawable/ic_action_delete"
+        android:src="@drawable/ic_action_save"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

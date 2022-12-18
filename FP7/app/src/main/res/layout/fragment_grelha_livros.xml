@@ -5,15 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.booksList.GrelhaLivrosFragment">
 
+    <!--
     <GridView
         android:id="@+id/BooksGridFrag_Gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="auto_fit"
         />
+ -->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/BooksGridFrag_SwipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/BooksGridFrag_RecyV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/BooksListFrag_FloatBtn_Add"
+        android:id="@+id/BooksGridFrag_FloatBtn_Add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

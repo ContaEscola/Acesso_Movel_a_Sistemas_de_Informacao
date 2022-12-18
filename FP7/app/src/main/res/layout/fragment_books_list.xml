@@ -12,11 +12,20 @@
 
        -->
 
+
+   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+       android:id="@+id/BooksListFrag_SwipeContainer"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
    <!-- Para recyclerView -->
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/BooksListFrag_RecyV"
        android:layout_width="match_parent"
        android:layout_height="match_parent" />
+
+
+   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
    <com.google.android.material.floatingactionbutton.FloatingActionButton
        android:id="@+id/BooksListFrag_FloatBtn_Add"
@@ -26,6 +35,6 @@
        android:layout_margin="16dp"
        android:clickable="true"
        android:src="@drawable/ic_action_add"
-      />
+       />
 
 </FrameLayout>

@@ -17,15 +17,13 @@ import com.mv.fp7.data.model.Book;
 import com.mv.fp7.data.model.SingletonBookManager;
 import com.mv.fp7.ui.MenuMainActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * https://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview
  * Resposta Nº3
  */
-public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewBooksAdapter.BookItem> implements Filterable, RecyclerViewAdapter {
+public class RecyclerViewGridBooksAdapter extends RecyclerView.Adapter<RecyclerViewGridBooksAdapter.BookItem> implements RecyclerViewAdapter {
 
     private Context context;
     private ArrayList<Book> booksListOriginal;
@@ -43,8 +41,7 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
         return -1;
     }
 
-
-    public RecyclerViewBooksAdapter(Context context, ArrayList<Book> booksList) {
+    public RecyclerViewGridBooksAdapter(Context context, ArrayList<Book> booksList) {
         this.context = context;
         this.booksListOriginal = booksList;
         this.booksList = new ArrayList<>(booksList);
@@ -54,12 +51,12 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
 
     @Override
     public BookItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.books_list_item, parent, false);
+        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grelha_livro, parent, false);
         return new BookItem(item);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewBooksAdapter.BookItem holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewGridBooksAdapter.BookItem holder, int position) {
         Book book = booksList.get(position);
         final int bookId = book.getId();
 
@@ -72,43 +69,6 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
     @Override
     public int getItemCount() {
         return booksList.size();
-    }
-
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                ArrayList<Book> filteredList = null;
-                if(charSequence.length() == 0)
-                    filteredList = new ArrayList<>(booksListOriginal);
-                else
-                    filteredList = getFilteredList(charSequence.toString().toLowerCase());
-
-                FilterResults results = new FilterResults();
-                results.values = filteredList;
-
-                return results;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                booksList = (ArrayList<Book>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
-    private ArrayList<Book> getFilteredList(String query) {
-        ArrayList<Book> results = new ArrayList<>();
-
-        for(Book item: booksListOriginal) {
-            if(item.getTitle().toLowerCase().contains(query))
-                results.add(item);
-        }
-
-        return results;
     }
 
 
@@ -136,26 +96,14 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
 
     public static class BookItem extends RecyclerView.ViewHolder {
 
-        private TextView title;
-        private TextView serie;
-        private TextView author;
-        private TextView year;
         private ImageView cover;
 
         public BookItem(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.BooksListItem_Tv_TitlePlaceholder);
-            serie = itemView.findViewById(R.id.BooksListItem_Tv_SeriePlaceholder);
-            author = itemView.findViewById(R.id.BooksListItem_Tv_AutorPlaceholder);
-            year = itemView.findViewById(R.id.BooksListItem_Tv_AnoPlaceholder);
-            cover = itemView.findViewById(R.id.BooksListItem_Iv_BookCoverPlaceholder);
+            cover = itemView.findViewById(R.id.BooksGridItem_Iv_CoverPlaceholder);
         }
 
         public void update(Book book) {
-            title.setText(book.getTitle());
-            serie.setText(book.getSerie());
-            author.setText(book.getAuthor());
-            year.setText(String.valueOf(book.getYear()));
             cover.setImageResource(book.getCover());
         }
 

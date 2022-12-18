@@ -11,6 +11,8 @@ public class Book {
     private static int sIdIncrementer = 0;
 
     public Book(int id, int year, int cover, String title, String serie, String author) {
+        sIdIncrementer++;
+
         this.id = id;
         this.title = title;
         this.serie = serie;
@@ -28,6 +30,12 @@ public class Book {
         this.author = author;
         this.year = year;
         this.cover = cover;
+    }
+
+    public Book() {
+        sIdIncrementer++;
+
+        this.id = sIdIncrementer;
     }
 
     public int getId() {
@@ -52,6 +60,9 @@ public class Book {
 
     public int getCover() {
         return cover;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
