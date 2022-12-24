@@ -1,4 +1,4 @@
-package com.mv.fp7.ui.adapters;
+package com.mv.fp8.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,14 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mv.fp7.R;
-import com.mv.fp7.data.model.Book;
-import com.mv.fp7.data.model.SingletonBookManager;
-import com.mv.fp7.ui.MenuMainActivity;
+import com.mv.fp8.R;
+import com.mv.fp8.data.model.Book;
+import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.ui.MenuMainActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * https://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview

@@ -1,4 +1,4 @@
-package com.mv.fp7.ui.adapters;
+package com.mv.fp8.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mv.fp7.R;
-import com.mv.fp7.data.model.Book;
+import com.mv.fp8.R;
+import com.mv.fp8.data.model.Book;
 
 import java.util.ArrayList;
 

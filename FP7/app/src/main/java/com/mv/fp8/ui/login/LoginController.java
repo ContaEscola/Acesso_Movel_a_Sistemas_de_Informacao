@@ -1,9 +1,8 @@
-package com.mv.fp7.ui.login;
+package com.mv.fp8.ui.login;
 
 
 
-import com.mv.fp7.data.model.User;
-import com.mv.fp7.data.prefs.PreferencesHelper;
+import com.mv.fp8.data.model.User;
 
 public class LoginController {
 

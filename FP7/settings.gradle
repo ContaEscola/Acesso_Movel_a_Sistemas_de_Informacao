@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "FP7"
+rootProject.name = "FP8"
 include ':app'

@@ -1,21 +1,18 @@
-package com.mv.fp7.ui.adapters;
+package com.mv.fp8.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mv.fp7.R;
-import com.mv.fp7.data.model.Book;
-import com.mv.fp7.data.model.SingletonBookManager;
-import com.mv.fp7.ui.MenuMainActivity;
+import com.mv.fp8.R;
+import com.mv.fp8.data.model.Book;
+import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.ui.MenuMainActivity;
 
 import java.util.ArrayList;
 

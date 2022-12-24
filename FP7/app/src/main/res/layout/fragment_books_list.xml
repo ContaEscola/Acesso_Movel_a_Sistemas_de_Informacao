@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mv.fp7.ui.booksList.BooksListFragment">
+    tools:context="com.mv.fp8.ui.booksList.BooksListFragment">
 
    <!-- Para customAdapter
    <ListView

@@ -1,4 +1,4 @@
-package com.mv.fp7.ui.booksList;
+package com.mv.fp8.ui.booksList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -9,25 +9,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.mv.fp7.R;
-import com.mv.fp7.data.model.Book;
-import com.mv.fp7.data.model.SingletonBookManager;
+import com.mv.fp8.R;
+import com.mv.fp8.data.model.SingletonBookManager;
 
-import com.mv.fp7.ui.MenuMainActivity;
-import com.mv.fp7.ui.adapters.RecyclerViewBooksAdapter;
-import com.mv.fp7.ui.adapters.RecyclerViewGridBooksAdapter;
+import com.mv.fp8.ui.MenuMainActivity;
+import com.mv.fp8.ui.adapters.RecyclerViewGridBooksAdapter;
 
 
 public class GrelhaLivrosFragment extends Fragment {

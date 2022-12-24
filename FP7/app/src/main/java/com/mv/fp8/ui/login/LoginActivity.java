@@ -1,19 +1,17 @@
-package com.mv.fp7.ui.login;
+package com.mv.fp8.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.mv.fp7.R;
-import com.mv.fp7.data.prefs.PreferencesHelper;
-import com.mv.fp7.ui.MenuMainActivity;
+import com.mv.fp8.R;
+import com.mv.fp8.data.prefs.PreferencesHelper;
+import com.mv.fp8.ui.MenuMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

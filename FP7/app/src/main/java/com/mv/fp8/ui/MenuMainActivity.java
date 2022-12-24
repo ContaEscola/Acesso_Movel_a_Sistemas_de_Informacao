@@ -1,4 +1,4 @@
-package com.mv.fp7.ui;
+package com.mv.fp8.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +19,11 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.mv.fp7.R;
-import com.mv.fp7.data.prefs.PreferencesHelper;
-import com.mv.fp7.ui.booksList.BooksListFragment;
-import com.mv.fp7.ui.booksList.DetalhesLivroActivity;
-import com.mv.fp7.ui.booksList.GrelhaLivrosFragment;
+import com.mv.fp8.R;
+import com.mv.fp8.data.prefs.PreferencesHelper;
+import com.mv.fp8.ui.booksList.BooksListFragment;
+import com.mv.fp8.ui.booksList.DetalhesLivroActivity;
+import com.mv.fp8.ui.booksList.GrelhaLivrosFragment;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String MAIL = "com.mv.fp5.MAIL";

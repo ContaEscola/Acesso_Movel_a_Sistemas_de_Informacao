@@ -6,7 +6,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.mv.fp7"
+        applicationId "com.mv.fp8"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -29,6 +29,7 @@ android {
     viewBinding{
         enabled = true
     }
+    namespace 'com.mv.fp8'
 }
 
 dependencies {

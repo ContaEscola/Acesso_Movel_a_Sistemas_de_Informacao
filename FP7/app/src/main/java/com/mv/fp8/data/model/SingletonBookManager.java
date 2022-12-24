@@ -1,8 +1,7 @@
-package com.mv.fp7.data.model;
+package com.mv.fp8.data.model;
 
-import com.mv.fp7.R;
-import com.mv.fp7.ui.adapters.RecyclerViewAdapter;
-import com.mv.fp7.ui.adapters.RecyclerViewBooksAdapter;
+import com.mv.fp8.R;
+import com.mv.fp8.ui.adapters.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 

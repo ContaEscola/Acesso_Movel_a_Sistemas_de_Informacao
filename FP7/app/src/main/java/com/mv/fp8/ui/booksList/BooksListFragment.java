@@ -1,9 +1,7 @@
-package com.mv.fp7.ui.booksList;
+package com.mv.fp8.ui.booksList;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -26,10 +23,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.mv.fp7.R;
-import com.mv.fp7.data.model.SingletonBookManager;
-import com.mv.fp7.ui.MenuMainActivity;
-import com.mv.fp7.ui.adapters.RecyclerViewBooksAdapter;
+import com.mv.fp8.R;
+import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.ui.MenuMainActivity;
+import com.mv.fp8.ui.adapters.RecyclerViewBooksAdapter;
 
 public class BooksListFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.mv.fp7.data.model;
+package com.mv.fp8.data.model;
 
 public class Book {
     private int id;

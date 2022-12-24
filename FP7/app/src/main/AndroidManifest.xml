@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.mv.fp7">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -14,11 +13,11 @@
         android:theme="@style/Theme.FP6"
         tools:targetApi="31">
         <activity
-            android:name="com.mv.fp7.ui.booksList.DetalhesLivroActivity"
+            android:name="com.mv.fp8.ui.booksList.DetalhesLivroActivity"
             android:exported="false"
-            android:parentActivityName="com.mv.fp7.ui.MenuMainActivity"/>
+            android:parentActivityName="com.mv.fp8.ui.MenuMainActivity"/>
         <activity
-            android:name="com.mv.fp7.ui.MenuMainActivity"
+            android:name="com.mv.fp8.ui.MenuMainActivity"
             android:exported="false"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -28,7 +27,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.mv.fp7.ui.login.LoginActivity"
+            android:name="com.mv.fp8.ui.login.LoginActivity"
             android:exported="true"
             android:label="Login">
             <intent-filter>

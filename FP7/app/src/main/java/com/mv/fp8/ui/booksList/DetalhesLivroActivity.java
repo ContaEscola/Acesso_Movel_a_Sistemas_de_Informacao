@@ -1,4 +1,4 @@
-package com.mv.fp7.ui.booksList;
+package com.mv.fp8.ui.booksList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -6,18 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.mv.fp7.R;
-import com.mv.fp7.data.model.Book;
-import com.mv.fp7.data.model.SingletonBookManager;
-import com.mv.fp7.databinding.ActivityDetalhesLivroBinding;
-
-import javax.xml.transform.Result;
+import com.mv.fp8.R;
+import com.mv.fp8.data.model.Book;
+import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.databinding.ActivityDetalhesLivroBinding;
 
 public class DetalhesLivroActivity extends AppCompatActivity {
 

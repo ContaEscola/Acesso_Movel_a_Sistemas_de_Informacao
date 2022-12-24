@@ -1,4 +1,4 @@
-package com.mv.fp7.data.prefs;
+package com.mv.fp8.data.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
