@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.Book;
+import com.mv.fp8.data.db.model.Book;
 
 import java.util.ArrayList;
 

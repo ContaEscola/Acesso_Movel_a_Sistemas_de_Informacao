@@ -2,7 +2,7 @@ package com.mv.fp8.ui.login;
 
 
 
-import com.mv.fp8.data.model.User;
+import com.mv.fp8.data.db.model.User;
 
 public class LoginController {
 

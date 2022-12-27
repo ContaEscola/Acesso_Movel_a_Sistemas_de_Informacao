@@ -10,11 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.Book;
-import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.data.db.model.Book;
+import com.mv.fp8.data.db.model.SingletonBookManager;
 import com.mv.fp8.ui.MenuMainActivity;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * https://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview
@@ -23,8 +24,8 @@ import java.util.ArrayList;
 public class RecyclerViewGridBooksAdapter extends RecyclerView.Adapter<RecyclerViewGridBooksAdapter.BookItem> implements RecyclerViewAdapter {
 
     private Context context;
-    private ArrayList<Book> booksListOriginal;
-    private ArrayList<Book> booksList;
+    private LinkedList<Book> booksListOriginal;
+    private LinkedList<Book> booksList;
 
     private int getIndexOfBook(Book bookToLookUp) {
         int currentIndex = 0;
@@ -38,12 +39,12 @@ public class RecyclerViewGridBooksAdapter extends RecyclerView.Adapter<RecyclerV
         return -1;
     }
 
-    public RecyclerViewGridBooksAdapter(Context context, ArrayList<Book> booksList) {
+    public RecyclerViewGridBooksAdapter(Context context, LinkedList<Book> booksList) {
         this.context = context;
         this.booksListOriginal = booksList;
-        this.booksList = new ArrayList<>(booksList);
+        this.booksList = new LinkedList<>(booksList);
 
-        SingletonBookManager.getInstance().bindAdapter(this);
+        SingletonBookManager.getInstance(context).bindAdapter(this);
     }
 
     @Override

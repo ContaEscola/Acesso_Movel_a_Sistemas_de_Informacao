@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.Book;
+import com.mv.fp8.data.db.model.Book;
 
 import java.util.ArrayList;
 

@@ -12,8 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.Book;
-import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.data.db.AppDBManager;
+import com.mv.fp8.data.db.model.Book;
+import com.mv.fp8.data.db.model.SingletonBookManager;
 import com.mv.fp8.databinding.ActivityDetalhesLivroBinding;
 
 public class DetalhesLivroActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class DetalhesLivroActivity extends AppCompatActivity {
         switch (currentScenario){
             case SCENARIO_UPDATE:
                 int bookId = getIntent().getIntExtra(BOOK_ID, -1);
-                book = SingletonBookManager.getInstance().getBook(bookId);
+                book = SingletonBookManager.getInstance(this).getBook(bookId);
 
                 setTitle("Detalhes: " + book.getTitle());
 
@@ -73,12 +74,12 @@ public class DetalhesLivroActivity extends AppCompatActivity {
         binding.BooksDetailsActFloatBtnAction.setOnClickListener(view -> {
             switch (currentScenario) {
                 case SCENARIO_UPDATE:
-                    SingletonBookManager.getInstance().editBook(getBookFromForm());
+                    SingletonBookManager.getInstance(this).editBookDB(getBookFromForm());
                     returnResult(RESULT_OK, "Livro modificado com successo!");
                     break;
 
                 case SCENARIO_ADD:
-                    SingletonBookManager.getInstance().addBook(getBookFromForm());
+                    SingletonBookManager.getInstance(this).addBookDB(getBookFromForm());
                     returnResult(RESULT_OK, "Livro adicionado com successo!");
                     break;
 
@@ -100,6 +101,7 @@ public class DetalhesLivroActivity extends AppCompatActivity {
 
         switch(currentScenario){
             case SCENARIO_ADD:
+                bookFromForm.setId(AppDBManager.getInstance(this).getLastBookIdDB() + 1);
                 bookFromForm.setCover(R.drawable.img_book_cover_1);
                 break;
             case SCENARIO_UPDATE:
@@ -147,7 +149,7 @@ public class DetalhesLivroActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Pretende mesmo remover o livro?");
 
         dialogBuilder.setPositiveButton("Sim", (DialogInterface.OnClickListener) (dialog, which) -> {
-            SingletonBookManager.getInstance().removeBook(book.getId());
+            SingletonBookManager.getInstance(this).removeBookDB(book.getId());
             finish();
         });
 

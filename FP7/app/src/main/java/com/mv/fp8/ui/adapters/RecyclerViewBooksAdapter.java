@@ -13,11 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.Book;
-import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.data.db.model.Book;
+import com.mv.fp8.data.db.model.SingletonBookManager;
 import com.mv.fp8.ui.MenuMainActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * https://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview
@@ -26,8 +28,8 @@ import java.util.ArrayList;
 public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewBooksAdapter.BookItem> implements Filterable, RecyclerViewAdapter {
 
     private Context context;
-    private ArrayList<Book> booksListOriginal;
-    private ArrayList<Book> booksList;
+    private LinkedList<Book> booksListOriginal;
+    private LinkedList<Book> booksList;
 
     private int getIndexOfBook(Book bookToLookUp) {
         int currentIndex = 0;
@@ -42,12 +44,12 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
     }
 
 
-    public RecyclerViewBooksAdapter(Context context, ArrayList<Book> booksList) {
+    public RecyclerViewBooksAdapter(Context context, LinkedList<Book> booksList) {
         this.context = context;
         this.booksListOriginal = booksList;
-        this.booksList = new ArrayList<>(booksList);
+        this.booksList = new LinkedList<>(booksList);
 
-        SingletonBookManager.getInstance().bindAdapter(this);
+        SingletonBookManager.getInstance(context).bindAdapter(this);
     }
 
     @Override
@@ -78,9 +80,9 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-                ArrayList<Book> filteredList = null;
+                LinkedList<Book> filteredList = null;
                 if(charSequence.length() == 0)
-                    filteredList = new ArrayList<>(booksListOriginal);
+                    filteredList = new LinkedList<>(booksListOriginal);
                 else
                     filteredList = getFilteredList(charSequence.toString().toLowerCase());
 
@@ -92,14 +94,14 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                booksList = (ArrayList<Book>) filterResults.values;
+                booksList = (LinkedList<Book>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
     }
 
-    private ArrayList<Book> getFilteredList(String query) {
-        ArrayList<Book> results = new ArrayList<>();
+    private LinkedList<Book> getFilteredList(String query) {
+        LinkedList<Book> results = new LinkedList<>();
 
         for(Book item: booksListOriginal) {
             if(item.getTitle().toLowerCase().contains(query))

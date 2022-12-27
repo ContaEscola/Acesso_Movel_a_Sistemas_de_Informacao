@@ -1,4 +1,4 @@
-package com.mv.fp8.data.model;
+package com.mv.fp8.data.db.model;
 
 public class User {
 

@@ -24,9 +24,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.data.db.model.SingletonBookManager;
 import com.mv.fp8.ui.MenuMainActivity;
 import com.mv.fp8.ui.adapters.RecyclerViewBooksAdapter;
+
+import java.util.ArrayList;
 
 public class BooksListFragment extends Fragment {
 
@@ -75,7 +77,7 @@ public class BooksListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.BooksListFrag_RecyV);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new RecyclerViewBooksAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
+        adapter = new RecyclerViewBooksAdapter(getContext(), SingletonBookManager.getInstance(getContext()).getBookListDB());
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -88,7 +90,7 @@ public class BooksListFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                adapter = new RecyclerViewBooksAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
+                adapter = new RecyclerViewBooksAdapter(getContext(), SingletonBookManager.getInstance(getContext()).getBookListDB());
                 recyclerView.setAdapter(adapter);
                 swipeContainer.setRefreshing(false);
 

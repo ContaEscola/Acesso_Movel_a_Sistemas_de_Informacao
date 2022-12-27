@@ -20,7 +20,7 @@ import android.widget.GridView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mv.fp8.R;
-import com.mv.fp8.data.model.SingletonBookManager;
+import com.mv.fp8.data.db.model.SingletonBookManager;
 
 import com.mv.fp8.ui.MenuMainActivity;
 import com.mv.fp8.ui.adapters.RecyclerViewGridBooksAdapter;
@@ -67,7 +67,7 @@ public class GrelhaLivrosFragment extends Fragment {
         recyclerView = view.findViewById(R.id.BooksGridFrag_RecyV);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        adapter = new RecyclerViewGridBooksAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
+        adapter = new RecyclerViewGridBooksAdapter(getContext(), SingletonBookManager.getInstance(getContext()).getBookListDB());
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -80,7 +80,7 @@ public class GrelhaLivrosFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                adapter = new RecyclerViewGridBooksAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
+                adapter = new RecyclerViewGridBooksAdapter(getContext(), SingletonBookManager.getInstance(getContext()).getBookListDB());
                 recyclerView.setAdapter(adapter);
                 swipeContainer.setRefreshing(false);
 

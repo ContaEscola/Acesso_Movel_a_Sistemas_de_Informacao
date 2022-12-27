@@ -1,4 +1,6 @@
-package com.mv.fp8.data.model;
+package com.mv.fp8.data.db.model;
+
+import com.mv.fp8.data.db.AppDBManager;
 
 public class Book {
     private int id;
@@ -10,9 +12,7 @@ public class Book {
 
     private static int sIdIncrementer = 0;
 
-    public Book(int id, int year, int cover, String title, String serie, String author) {
-        sIdIncrementer++;
-
+    public Book(int id, String title, String serie, String author, int year, int cover) {
         this.id = id;
         this.title = title;
         this.serie = serie;
@@ -21,7 +21,7 @@ public class Book {
         this.cover = cover;
     }
 
-    public Book(int year, int cover, String title, String serie, String author){
+    public Book(String title, String serie, String author, int year, int cover){
         sIdIncrementer++;
 
         this.id = sIdIncrementer;
@@ -33,9 +33,6 @@ public class Book {
     }
 
     public Book() {
-        sIdIncrementer++;
-
-        this.id = sIdIncrementer;
     }
 
     public int getId() {
@@ -61,6 +58,7 @@ public class Book {
     public int getCover() {
         return cover;
     }
+
     public void setId(int id) {
         this.id = id;
     }
