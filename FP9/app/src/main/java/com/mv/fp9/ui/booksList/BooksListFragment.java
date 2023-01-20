@@ -24,11 +24,15 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mv.fp9.R;
+import com.mv.fp9.data.db.model.Book;
 import com.mv.fp9.data.db.model.SingletonBookManager;
+import com.mv.fp9.listeners.BooksListener;
 import com.mv.fp9.ui.MenuMainActivity;
 import com.mv.fp9.ui.adapters.RecyclerViewBooksAdapter;
 
-public class BooksListFragment extends Fragment {
+import java.util.LinkedList;
+
+public class BooksListFragment extends Fragment implements BooksListener {
 
 
     private ListView listView;
@@ -50,26 +54,9 @@ public class BooksListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_books_list, container, false);
         setHasOptionsMenu(true);
-
+        SingletonBookManager.getInstance(getContext()).setBooksListener(this);
         swipeContainer = view.findViewById(R.id.BooksListFrag_SwipeContainer);
 
-        // Para o customAdapter
-        /*
-        BooksListAdapter adapter = new BooksListAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
-        listView = view.findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Book selectedBook = (Book)adapterView.getItemAtPosition(i);
-
-                Intent bookDetailsActivity = new Intent(getContext(), DetalhesLivroActivity.class);
-                bookDetailsActivity.putExtra(DetalhesLivroActivity.BOOK_POSITION,i);
-                startActivity(bookDetailsActivity);
-
-            }
-        });*/
 
         // Para o recyclerView
         recyclerView = view.findViewById(R.id.BooksListFrag_RecyV);
@@ -88,8 +75,7 @@ public class BooksListFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                adapter = new RecyclerViewBooksAdapter(getContext(), SingletonBookManager.getInstance(getContext()).getBookListDB());
-                recyclerView.setAdapter(adapter);
+                refreshAdapter(SingletonBookManager.getInstance(getContext()).getBookListDB());
                 swipeContainer.setRefreshing(false);
 
 
@@ -97,6 +83,12 @@ public class BooksListFragment extends Fragment {
         });
 
         return view;
+    }
+
+
+    private void refreshAdapter(LinkedList<Book> booksList) {
+        adapter = new RecyclerViewBooksAdapter(getContext(), booksList);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -140,4 +132,8 @@ public class BooksListFragment extends Fragment {
         startActivityForResult(bookDetailsActivity, MenuMainActivity.REQUEST_DETAIL_ACTIVITY);
     }
 
+    @Override
+    public void onRefreshBooksList(LinkedList<Book> booksList) {
+        refreshAdapter(booksList);
+    }
 }

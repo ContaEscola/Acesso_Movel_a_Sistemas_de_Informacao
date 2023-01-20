@@ -55,7 +55,7 @@ public class AppDBManager {
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getInt(4),
-                        cursor.getInt(5)));
+                        cursor.getString(5)));
             } while (cursor.moveToNext());
         }
 
@@ -90,5 +90,9 @@ public class AppDBManager {
 
     public void removeBookDB(int bookId) {
         database.delete(DBOpenHelper.TBL_BOOK, "id = ?", new String[]{String.valueOf(bookId)});
+    }
+
+    public void removeAllBooksDB() {
+        database.delete(DBOpenHelper.TBL_BOOK, null, null);
     }
 }

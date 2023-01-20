@@ -11,13 +11,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mv.fp9.R;
 import com.mv.fp9.data.db.AppDBManager;
 import com.mv.fp9.data.db.model.Book;
 import com.mv.fp9.data.db.model.SingletonBookManager;
+import com.mv.fp9.data.prefs.PreferencesHelper;
 import com.mv.fp9.databinding.ActivityDetalhesLivroBinding;
+import com.mv.fp9.listeners.BookListener;
 
-public class DetalhesLivroActivity extends AppCompatActivity {
+public class DetalhesLivroActivity extends AppCompatActivity implements BookListener {
 
     public static final String BOOK_ID = "book_id";
 
@@ -31,6 +35,12 @@ public class DetalhesLivroActivity extends AppCompatActivity {
     private String currentScenario;
 
     private ActivityDetalhesLivroBinding binding;
+
+    @Override
+    public void onRefreshDetalhes(int op) {
+        // Como eu saio da activity em qualquer operação nao preciso de fazer
+    }
+
     private Book book;
 
     private void init() {
@@ -44,7 +54,14 @@ public class DetalhesLivroActivity extends AppCompatActivity {
 
                 setTitle("Detalhes: " + book.getTitle());
 
-                binding.BookDetailsIvCoverPlaceholder.setImageResource(book.getCover());
+
+//                binding.BookDetailsIvCoverPlaceholder.setImageResource(book.getCover());
+//                Com Glide
+                Glide.with(this)
+                        .load(book.getCover())
+                        .placeholder(R.drawable.ic_politecnico_leiria)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(binding.BookDetailsIvCoverPlaceholder);
                 binding.BookDetailsEtTitlePlaceholder.setText(book.getTitle());
                 binding.BookDetailsEtSeriePlaceholder.setText(book.getSerie());
                 binding.BookDetailsEtAuthorPlaceholder.setText(book.getAuthor());
@@ -74,12 +91,12 @@ public class DetalhesLivroActivity extends AppCompatActivity {
         binding.BooksDetailsActFloatBtnAction.setOnClickListener(view -> {
             switch (currentScenario) {
                 case SCENARIO_UPDATE:
-                    SingletonBookManager.getInstance(this).editBookDB(getBookFromForm());
+                    SingletonBookManager.getInstance(this).editBookApi(getBookFromForm(), PreferencesHelper.getInstance(this).getTokenPreference());
                     returnResult(RESULT_OK, "Livro modificado com successo!");
                     break;
 
                 case SCENARIO_ADD:
-                    SingletonBookManager.getInstance(this).addBookDB(getBookFromForm());
+                    SingletonBookManager.getInstance(this).addBookApi(getBookFromForm(), PreferencesHelper.getInstance(this).getTokenPreference());
                     returnResult(RESULT_OK, "Livro adicionado com successo!");
                     break;
 
@@ -101,8 +118,8 @@ public class DetalhesLivroActivity extends AppCompatActivity {
 
         switch(currentScenario){
             case SCENARIO_ADD:
-                bookFromForm.setId(AppDBManager.getInstance(this).getLastBookIdDB() + 1);
-                bookFromForm.setCover(R.drawable.img_book_cover_1);
+                bookFromForm.setId(0);
+                bookFromForm.setCover("http://amsi.dei.estg.ipleiria.pt/img/ipl_semfundo.png");
                 break;
             case SCENARIO_UPDATE:
                 bookFromForm.setId(book.getId());
@@ -149,7 +166,7 @@ public class DetalhesLivroActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Pretende mesmo remover o livro?");
 
         dialogBuilder.setPositiveButton("Sim", (DialogInterface.OnClickListener) (dialog, which) -> {
-            SingletonBookManager.getInstance(this).removeBookDB(book.getId());
+            SingletonBookManager.getInstance(this).removeBookApi(book);
             finish();
         });
 

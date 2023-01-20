@@ -20,13 +20,17 @@ import android.widget.GridView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mv.fp9.R;
+import com.mv.fp9.data.db.model.Book;
 import com.mv.fp9.data.db.model.SingletonBookManager;
 
+import com.mv.fp9.listeners.BooksListener;
 import com.mv.fp9.ui.MenuMainActivity;
 import com.mv.fp9.ui.adapters.RecyclerViewGridBooksAdapter;
 
+import java.util.LinkedList;
 
-public class GrelhaLivrosFragment extends Fragment {
+
+public class GrelhaLivrosFragment extends Fragment implements BooksListener {
 
     private GridView gridView;
 
@@ -44,25 +48,8 @@ public class GrelhaLivrosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_grelha_livros, container, false);
-
+        SingletonBookManager.getInstance(getContext()).setBooksListener(this);
         swipeContainer = view.findViewById(R.id.BooksGridFrag_SwipeContainer);
-        /*
-        GrelhaLivroAdapter booksGridAdapter = new GrelhaLivroAdapter(getContext(), SingletonBookManager.getInstance().getBookList());
-
-        gridView = view.findViewById(R.id.BooksGridFrag_Gv);
-        gridView.setAdapter(booksGridAdapter);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Book book = (Book) booksGridAdapter.getItem(i);
-                Intent bookDetailsActivity = new Intent(getContext(), DetalhesLivroActivity.class);
-                bookDetailsActivity.putExtra(DetalhesLivroActivity.BOOK_ID,book.getId());
-                startActivity(bookDetailsActivity);
-            }
-        });
-
-        */
 
         recyclerView = view.findViewById(R.id.BooksGridFrag_RecyV);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -80,8 +67,7 @@ public class GrelhaLivrosFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                adapter = new RecyclerViewGridBooksAdapter(getContext(), SingletonBookManager.getInstance(getContext()).getBookListDB());
-                recyclerView.setAdapter(adapter);
+                refreshAdapter(SingletonBookManager.getInstance(getContext()).getBookListDB());
                 swipeContainer.setRefreshing(false);
 
 
@@ -91,6 +77,11 @@ public class GrelhaLivrosFragment extends Fragment {
 
         return view;
 
+    }
+
+    private void refreshAdapter(LinkedList<Book> bookList) {
+        adapter = new RecyclerViewGridBooksAdapter(getContext(), bookList);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -110,5 +101,10 @@ public class GrelhaLivrosFragment extends Fragment {
         Intent bookDetailsActivity = new Intent(getContext(), DetalhesLivroActivity.class);
         bookDetailsActivity.putExtra(DetalhesLivroActivity.SCENARIO_KEY, DetalhesLivroActivity.SCENARIO_ADD);
         startActivityForResult(bookDetailsActivity, MenuMainActivity.REQUEST_DETAIL_ACTIVITY);
+    }
+
+    @Override
+    public void onRefreshBooksList(LinkedList<Book> booksList) {
+        refreshAdapter(booksList);
     }
 }

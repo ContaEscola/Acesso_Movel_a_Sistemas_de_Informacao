@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mv.fp9.R;
 import com.mv.fp9.data.db.model.Book;
 import com.mv.fp9.data.db.model.SingletonBookManager;
@@ -25,7 +27,7 @@ import java.util.LinkedList;
  */
 public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewBooksAdapter.BookItem> implements Filterable, RecyclerViewAdapter {
 
-    private Context context;
+    protected Context context;
     private LinkedList<Book> booksListOriginal;
     private LinkedList<Book> booksList;
 
@@ -53,7 +55,7 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
     @Override
     public BookItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.books_list_item, parent, false);
-        return new BookItem(item);
+        return new BookItem(item, context);
     }
 
     @Override
@@ -134,14 +136,16 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
 
     public static class BookItem extends RecyclerView.ViewHolder {
 
+        private Context context;
         private TextView title;
         private TextView serie;
         private TextView author;
         private TextView year;
         private ImageView cover;
 
-        public BookItem(@NonNull View itemView) {
+        public BookItem(@NonNull View itemView, Context context) {
             super(itemView);
+            this.context = context;
             title = itemView.findViewById(R.id.BooksListItem_Tv_TitlePlaceholder);
             serie = itemView.findViewById(R.id.BooksListItem_Tv_SeriePlaceholder);
             author = itemView.findViewById(R.id.BooksListItem_Tv_AutorPlaceholder);
@@ -154,7 +158,13 @@ public class RecyclerViewBooksAdapter extends RecyclerView.Adapter<RecyclerViewB
             serie.setText(book.getSerie());
             author.setText(book.getAuthor());
             year.setText(String.valueOf(book.getYear()));
-            cover.setImageResource(book.getCover());
+//            cover.setImageResource(book.getCover());
+//            Com Glide
+            Glide.with(context)
+                    .load(book.getCover())
+                    .placeholder(R.drawable.ic_politecnico_leiria)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(cover);
         }
 
     }

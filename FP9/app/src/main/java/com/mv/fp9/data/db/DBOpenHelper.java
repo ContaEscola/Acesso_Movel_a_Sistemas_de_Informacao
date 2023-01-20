@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "fp8";
+    private static final String DB_NAME = "fp9";
     private static final int DB_VERSION = 1;
 
     public static final String TBL_BOOK = "book";
@@ -24,7 +24,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     COL_SERIE_BOOK + " TEXT NOT NULL, " +
                     COL_AUTHOR_BOOK + " TEXT NOT NULL, " +
                     COL_YEAR_BOOK + " INTEGER NOT NULL, " +
-                    COL_COVER_BOOK + " INTEGER " +
+                    COL_COVER_BOOK + " TEXT " +
                     ");";
 
 

@@ -8,6 +8,7 @@ public class PreferencesHelper {
 
     private static final String PREF_USER = "PREF_USER";
     private static final String PREF_KEY_EMAIL = "PREF_KEY_EMAIL";
+    private static final String PREF_KEY_TOKEN = "PREF_KEY_TOKEN";
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor preferencesEditor;
@@ -28,7 +29,14 @@ public class PreferencesHelper {
         preferencesEditor.putString(PREF_KEY_EMAIL, emailPreference).commit();
     }
 
+    public void setTokenPreference(String tokenPreference) {
+        preferencesEditor.putString(PREF_KEY_TOKEN, tokenPreference).commit();
+    }
+
     public String getEmailPreference() {
         return sharedPreferences.getString(PREF_KEY_EMAIL, "");
     }
+
+    public String getTokenPreference() { return sharedPreferences.getString(PREF_KEY_TOKEN, ""); }
+
 }

@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mv.fp9.R;
 import com.mv.fp9.data.db.model.Book;
 import com.mv.fp9.data.db.model.SingletonBookManager;
@@ -49,7 +51,7 @@ public class RecyclerViewGridBooksAdapter extends RecyclerView.Adapter<RecyclerV
     @Override
     public BookItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grelha_livro, parent, false);
-        return new BookItem(item);
+        return new BookItem(item, context);
     }
 
     @Override
@@ -93,15 +95,25 @@ public class RecyclerViewGridBooksAdapter extends RecyclerView.Adapter<RecyclerV
 
     public static class BookItem extends RecyclerView.ViewHolder {
 
+        private Context context;
         private ImageView cover;
 
-        public BookItem(@NonNull View itemView) {
+        public BookItem(@NonNull View itemView, Context context) {
             super(itemView);
+            this.context = context;
             cover = itemView.findViewById(R.id.BooksGridItem_Iv_CoverPlaceholder);
+
         }
 
         public void update(Book book) {
-            cover.setImageResource(book.getCover());
+
+//            cover.setImageResource(book.getCover());
+//            Com Glide
+            Glide.with(context)
+                    .load(book.getCover())
+                    .placeholder(R.drawable.ic_politecnico_leiria)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(cover);
         }
 
     }
